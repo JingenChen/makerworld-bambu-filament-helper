@@ -1,0 +1,259 @@
+/* MakerWorld 拓竹耗材色号与编码助手样式 */
+
+/* 让 MakerWorld 悬停浮层自适应高度，避免新插入的耗材对照表被底部裁切 */
+#mouse-over-popover,
+#mouse-over-popover > div,
+#mouse-over-popover .MuiBox-root {
+  max-height: none !important;
+  height: auto !important;
+}
+
+.bambu-fh-container {
+  margin-top: 8px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: rgba(0, 174, 66, 0.05);
+  border: 1px solid rgba(0, 174, 66, 0.24);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 12px;
+  line-height: 1.4;
+  color: #1f2329;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+html[data-mui-color-scheme="dark"] .bambu-fh-container,
+body.dark .bambu-fh-container,
+[data-theme="dark"] .bambu-fh-container {
+  background: rgba(0, 174, 66, 0.1);
+  border-color: rgba(0, 174, 66, 0.35);
+  color: #e5e7eb;
+}
+
+.bambu-fh-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+  padding-bottom: 4px;
+  border-bottom: 1px dashed rgba(0, 174, 66, 0.25);
+  font-weight: 600;
+  font-size: 11.5px;
+  color: #009237;
+}
+
+html[data-mui-color-scheme="dark"] .bambu-fh-header {
+  color: #2fd16b;
+}
+
+.bambu-fh-header-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.bambu-fh-header-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #00ae42;
+  display: inline-block;
+}
+
+.bambu-fh-header-tip {
+  font-weight: 400;
+  font-size: 10.5px;
+  opacity: 0.75;
+}
+
+.bambu-fh-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.bambu-fh-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 5px 7px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(0, 0, 0, 0.07);
+}
+
+html[data-mui-color-scheme="dark"] .bambu-fh-row,
+body.dark .bambu-fh-row {
+  background: rgba(30, 34, 40, 0.88);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.bambu-fh-row-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.bambu-fh-source {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  font-size: 11.5px;
+}
+
+.bambu-fh-swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  border: 1px solid rgba(0, 0, 0, 0.28);
+  flex-shrink: 0;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.25);
+}
+
+.bambu-fh-hex {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 10.5px;
+  font-weight: 500;
+  padding: 0 5px;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.06);
+  color: inherit;
+  cursor: pointer;
+  user-select: all;
+}
+
+html[data-mui-color-scheme="dark"] .bambu-fh-hex {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.bambu-fh-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.bambu-fh-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 1.5px 6px;
+  border-radius: 4px;
+  font-size: 11px;
+  line-height: 1.35;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  border: 1px solid transparent;
+  user-select: none;
+}
+
+.bambu-fh-badge:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Basic 系列配色：拓竹绿调 */
+.bambu-fh-badge[data-tier="basic"] {
+  background: rgba(0, 174, 66, 0.11);
+  border-color: rgba(0, 174, 66, 0.35);
+  color: #006b28;
+}
+
+html[data-mui-color-scheme="dark"] .bambu-fh-badge[data-tier="basic"] {
+  background: rgba(0, 174, 66, 0.2);
+  border-color: rgba(0, 174, 66, 0.45);
+  color: #6ee798;
+}
+
+/* Matte 哑光系列配色：深蓝/靛青调 */
+.bambu-fh-badge[data-tier="matte"] {
+  background: rgba(0, 120, 191, 0.11);
+  border-color: rgba(0, 120, 191, 0.35);
+  color: #00558a;
+}
+
+html[data-mui-color-scheme="dark"] .bambu-fh-badge[data-tier="matte"] {
+  background: rgba(0, 120, 191, 0.22);
+  border-color: rgba(56, 189, 248, 0.45);
+  color: #7dd3fc;
+}
+
+/* Silk+ 丝绸系列配色：琥珀金调 */
+.bambu-fh-badge[data-tier="silk"] {
+  background: rgba(244, 169, 37, 0.14);
+  border-color: rgba(217, 119, 6, 0.35);
+  color: #92400e;
+}
+
+html[data-mui-color-scheme="dark"] .bambu-fh-badge[data-tier="silk"] {
+  background: rgba(244, 169, 37, 0.2);
+  border-color: rgba(251, 191, 36, 0.45);
+  color: #fcd34d;
+}
+
+/* 特殊/其它系列配色：紫罗兰调 */
+.bambu-fh-badge[data-tier="special"],
+.bambu-fh-badge[data-tier="cf"] {
+  background: rgba(94, 67, 183, 0.11);
+  border-color: rgba(94, 67, 183, 0.35);
+  color: #432c85;
+}
+
+html[data-mui-color-scheme="dark"] .bambu-fh-badge[data-tier="special"],
+html[data-mui-color-scheme="dark"] .bambu-fh-badge[data-tier="cf"] {
+  background: rgba(139, 92, 246, 0.2);
+  border-color: rgba(167, 139, 250, 0.45);
+  color: #c4b5fd;
+}
+
+.bambu-fh-series-tag {
+  font-weight: 700;
+  font-size: 10px;
+  padding: 0 4px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+html[data-mui-color-scheme="dark"] .bambu-fh-series-tag {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.bambu-fh-color-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.bambu-fh-code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-weight: 700;
+  opacity: 0.95;
+}
+
+/* 复制成功轻提示 Toast */
+.bambu-fh-toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 2147483647;
+  background: #00ae42;
+  color: #ffffff;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 12.5px;
+  font-weight: 600;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.22);
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.bambu-fh-toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}

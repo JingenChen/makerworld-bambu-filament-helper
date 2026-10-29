@@ -1,0 +1,11 @@
+# macOS
+.DS_Store
+__pycache__/
+*.pyc
+
+# Built app bundle & temporary duplicate folder (Safari Xcode project source is kept in safari-extension/)
+BambuFilamentHelper.app/
+extension-src/
+safari-extension/**/xcuserdata/
+safari-extension/**/DerivedData/
+safari-extension/**/build/

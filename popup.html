@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>拓竹官方耗材色号速查</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      width: 380px;
+      max-height: 540px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: #f8fafc;
+      color: #1e293b;
+      display: flex;
+      flex-direction: column;
+    }
+    .header {
+      padding: 12px 14px;
+      background: linear-gradient(135deg, #00ae42 0%, #008a34 100%);
+      color: #fff;
+    }
+    .header h1 {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 3px;
+    }
+    .header p {
+      font-size: 11px;
+      opacity: 0.9;
+    }
+    .controls {
+      padding: 10px 12px;
+      background: #fff;
+      border-bottom: 1px solid #e2e8f0;
+      display: flex;
+      gap: 6px;
+    }
+    .search-input {
+      flex: 1;
+      padding: 6px 10px;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      font-size: 12px;
+      outline: none;
+    }
+    .search-input:focus {
+      border-color: #00ae42;
+    }
+    .series-select {
+      padding: 6px 8px;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      font-size: 12px;
+      background: #fff;
+      outline: none;
+    }
+    .list {
+      padding: 8px 12px 12px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      max-height: 410px;
+    }
+    .item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 7px 10px;
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 7px;
+      cursor: pointer;
+      transition: border-color 0.15s ease, transform 0.1s ease;
+    }
+    .item:hover {
+      border-color: #00ae42;
+      transform: translateY(-1px);
+    }
+    .item-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .swatch {
+      width: 22px;
+      height: 22px;
+      border-radius: 5px;
+      border: 1px solid rgba(0,0,0,0.2);
+      flex-shrink: 0;
+    }
+    .info-main {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #0f172a;
+    }
+    .info-sub {
+      font-size: 11px;
+      color: #64748b;
+    }
+    .item-right {
+      text-align: right;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    }
+    .code {
+      font-size: 12px;
+      font-weight: 700;
+      color: #008a34;
+      background: rgba(0, 174, 66, 0.1);
+      padding: 1px 6px;
+      border-radius: 4px;
+      display: inline-block;
+    }
+    .hex {
+      font-size: 10.5px;
+      color: #64748b;
+      margin-top: 2px;
+    }
+    .toast {
+      position: fixed;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #0f172a;
+      color: #fff;
+      font-size: 11.5px;
+      padding: 5px 12px;
+      border-radius: 6px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s;
+    }
+    .toast.show {
+      opacity: 0.95;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>拓竹官方耗材色号与编码速查</h1>
+    <p>支持 MakerWorld 页面自动关联 Basic / Matte 等系列 · 点击即可复制</p>
+  </div>
+  <div class="controls">
+    <input id="searchInput" class="search-input" type="text" placeholder="搜索颜色名、编码(10100)、#Hex..." />
+    <select id="seriesSelect" class="series-select">
+      <option value="">全部系列</option>
+      <option value="PLA Basic">PLA Basic</option>
+      <option value="PLA Matte">PLA Matte</option>
+      <option value="PLA Silk+">PLA Silk+</option>
+      <option value="PLA Translucent">PLA Translucent</option>
+      <option value="PLA Wood">PLA Wood</option>
+      <option value="PLA Metal">PLA Metal</option>
+      <option value="PLA Sparkle">PLA Sparkle</option>
+      <option value="PLA Marble">PLA Marble</option>
+      <option value="PLA Galaxy">PLA Galaxy</option>
+      <option value="PLA-CF">PLA-CF</option>
+      <option value="PLA Glow">PLA Glow</option>
+      <option value="PLA Pure">PLA Pure</option>
+      <option value="PETG HF">PETG HF</option>
+      <option value="PETG Basic">PETG Basic</option>
+      <option value="PETG Matte">PETG Matte</option>
+      <option value="PETG Translucent">PETG Translucent</option>
+      <option value="PETG-CF">PETG-CF</option>
+      <option value="ABS">ABS / ABS-GF</option>
+      <option value="ASA">ASA</option>
+      <option value="TPU">TPU</option>
+      <option value="PC">PC</option>
+      <option value="PA">PA / CF</option>
+    </select>
+  </div>
+  <div id="filamentList" class="list"></div>
+  <div id="toast" class="toast"></div>
+
+  <script src="filaments-db.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

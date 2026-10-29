@@ -1,0 +1,49 @@
+{
+  "manifest_version": 3,
+  "name": "MakerWorld 拓竹耗材色号与编码助手 (Bambu Filament Matcher)",
+  "version": "1.0.0",
+  "description": "在 MakerWorld 模型页面自动关联显示拓竹官方耗材（同时展示 Basic / Matte / Silk+ / HF 等系列）的实际颜色名称、5位耗材编码与官方 Hex 色值。",
+  "permissions": [
+    "storage"
+  ],
+  "host_permissions": [
+    "https://makerworld.com.cn/*",
+    "https://*.makerworld.com.cn/*",
+    "https://makerworld.com/*",
+    "https://*.makerworld.com/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "拓竹官方耗材色号速查",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://makerworld.com.cn/*",
+        "https://*.makerworld.com.cn/*",
+        "https://makerworld.com/*",
+        "https://*.makerworld.com/*"
+      ],
+      "css": [
+        "styles.css"
+      ],
+      "js": [
+        "filaments-db.js",
+        "content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}
